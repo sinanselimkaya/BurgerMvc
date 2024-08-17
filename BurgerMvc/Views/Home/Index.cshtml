@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .list-group-item {
+        border-radius: 15px;
+        background-color: rgba(177, 10, 35, 0.9);
+        color: #ffffff;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+    }
+
+        .list-group-item:hover {
+            transform: scale(1.05);
+            background-color: #b50a23;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+    h1 {
+        font-size: 2.5rem;
+        color: #fff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    h4 {
+        font-size: 1.5rem;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .burger-details {
+        color: black;
+        margin-top: 20%;
+    }
+</style>
+<body>
+    <div class="row">
+        <div class="col-6">
+            <div class="container" style="width: 80%; margin-top: 10%; margin-left: 10%; margin-bottom: 10%;">
+                <ul class="list-group" style="text-align: center; border-radius: 80%;">
+                    <li class="list-group-item" style="background-color: rgb(221, 144, 43);" onclick="showDetails('CodeBurger', 'Damak çatlatan burgerler, taze malzemeler ve eşsiz tarifler. CodeBurger ile burger keyfinizi bir üst seviyeye taşıyın. Her ısırıkta tazelik ve lezzet dolu, özenle hazırlanmış burgerlerimizi keşfedin.', 'Şimdi sipariş verin ve lezzetin tadını çıkarın. CodeBurger Keyfi Her An Yanınızda.')"><h1>Menu</h1></li>
+                    <li class="list-group-item" onclick="showDetails('Python Burger', 'Python\'ın basit ve okunaklı yapısını yansıtan, herkesin seveceği klasik bir hamburger.', 'Siyah çavdar ekmeği, dana köftesi, cheddar peyniri, marul, domates, soğan, özel Python sosu (barbekü sos bazlı, hafif baharatlı).')"><h4>Python Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('Java Burger', 'Java\'nın güçlü ve esnek yapısını yansıtan, doyurucu ve zengin bir hamburger.', 'Tam buğday ekmeği, tavuk veya dana köftesi, çift cheddar peyniri, bacon, marul, domates, soğan, özel Java sosu (kahve ve hardal karışımı).')"><h4>Java Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('JavaScript Burger', 'JavaScript\'in interaktif ve dinamik yapısını yansıtan, sürprizlerle dolu bir hamburger.', 'Siyah ekmek, renkli köfte (kırmızı pancar, havuç gibi sebzelerle), mavi peynir, marul, domates, soğan, özel JavaScript sosu (tatlı ve ekşi karışımı).')"><h4>JavaScript Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('C++ Burger', 'C++\'ın performans ve kontrol odaklı yapısını yansıtan, güçlü ve lezzetli bir hamburger.', 'Tam buğday ekmeği, baharatlı dana köftesi, mavi peynir, jalapeno biber, marul, domates, soğan, özel C++ sosu (acı biber sosu bazlı).')"><h4>C++ Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('C# Burger', 'C#\'ın modern ve kullanışlı yapısını yansıtan, dengeli ve lezzetli bir hamburger.', 'Beyaz ekmek, tavuk veya dana köftesi, cheddar peyniri, marul, domates, soğan, özel C# sosu (barbekü sos ve mayonez karışımı).')"><h4>C# Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('Swift Burger', 'Swift\in güvenli ve hızlı yapısını yansıtan, modern ve şık bir hamburger.', 'Siyah ekmek, elma ve cevizli köfte, brie peyniri, marul, elma dilimleri, özel Swift sosu (elma sirkesi ve bal karışımı).')"><h4>Swift Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('Ruby on Rails Burger', 'Ruby on Rails\'in hızlı ve verimli yapısını yansıtan, hafif ve taze bir hamburger.', 'Tam buğday ekmeği, somon veya tofu köftesi, avokado, marul, domates, soğan, özel Ruby on Rails sosu (limonlu mayonez bazlı).')"><h4>Ruby on Rails Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('PHP Burger', 'PHP\'nin web geliştirmedeki yaygın kullanımını yansıtan, klasik ve popüler bir hamburger.', 'Beyaz ekmek, dana köftesi, cheddar peyniri, marul, domates, soğan, özel PHP sosu (barbekü sos ve ketçap karışımı).')"><h4>PHP Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('Go Burger', 'Go\'nun basit ve etkili yapısını yansıtan, temiz ve lezzetli bir hamburger.', 'Tam buğday ekmeği, dana köftesi, cheddar peyniri, marul, domates, soğan, özel Go sosu (soya sosu ve zencefil karışımı).')"><h4>Go Burger</h4></li>
+                    <li class="list-group-item" onclick="showDetails('Kotlin Burger', 'Kotlin\'in Java ile uyumlu, ancak daha modern ve güvenli yapısını yansıtan, dengeli ve lezzetli bir hamburger.', 'Siyah çavdar ekmeği, tavuk veya dana köftesi, gruyère peyniri, marul, domates, soğan, özel Kotlin sosu (hardal, mayonez ve bal karışımı).')"><h4>Kotlin Burger</h4></li>
+                    <li class="list-group-item" style="background-color: rgb(221, 144, 43);"><h4> </h4> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6 bg-secondary" style="align-items:center; margin:auto">
+            <div class="burger-details" style="text-align:center; margin:auto;">
+                <h1 id="burger-title" style="background: linear-gradient(to bottom right, rgba(255, 255, 0, 0.8), rgba(255, 165, 0, 0.8), red); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    CodeBurger
+                </h1>
+                <p id="burger-description">Damak çatlatan burgerler, taze malzemeler ve eşsiz tarifler! CodeBurger ile burger keyfinizi bir üst seviyeye taşıyın. Her ısırıkta tazelik ve lezzet dolu, özenle hazırlanmış burgerlerimizi keşfedin.</p>
+                <p id="burger-ingredients">
+                    Şimdi sipariş verin ve lezzetin tadını çıkarın!
+                    CodeBurger Keyfi Her An Yanınızda!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDetails(title, description, ingredients) {
+            document.getElementById('burger-title').innerText = title;
+            document.getElementById('burger-description').innerText = description;
+            document.getElementById('burger-ingredients').innerText = "İçindekiler: " + ingredients;
+        }
+    </script>
+</body>

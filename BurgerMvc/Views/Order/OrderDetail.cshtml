@@ -1,0 +1,89 @@
+﻿@model UserViewModel
+@{
+    var ordersmenus = ViewBag.Ordersmenus as List<OrdersMenuViewModel>;
+    var ordersextra = ViewBag.Ordersextras as List<OrdersExtraViewModel>;
+    var menus = ViewBag.Menus as List<MenuItemViewModel>;
+    var extras = ViewBag.Extras as List<ExtraIngredientViewModel>;
+}
+<div class="row">
+    <div class="col-md-5">
+        <div class="card p-2 mb-2" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+            <h2>
+                MENÜLER
+            </h2>
+        </div>
+        @foreach (var item in ordersmenus)
+        {
+            foreach (var item2 in menus)
+            {
+                if (item.MenuItemId == item2.Id)
+                {
+                    <div class="col-12">
+                        <div class="card p-2 mb-2" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="~/Images/@item2.Photo" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@item2.Title</h5>
+                                        <p class="card-text">@item2.Content</p>
+                                        <p class="card-text">Fiyat: @item2.Price</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+    <div class="col-md-5">
+        <div class="card p-2 mb-2" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+            <h2>
+                EKSTRA MALZEMELER
+            </h2>
+        </div>
+        @foreach (var item in ordersextra)
+        {
+            foreach (var item2 in extras)
+            {
+                if (item.ExtraIngredientId == item2.Id)
+                {
+                    <div class="col-12">
+                        <div class="card p-2 mb-2" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="~/Images/@item2.Photo" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@item2.Name</h5>
+                                        <p class="card-text">Fiyat: @item2.Price</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+    <div class="col-md-2">
+        <div class="col-12">
+            <div class="card p-2 mb-2" style="background-color:yellowgreen ;border-block-color:black; border-radius:24px;text-align:center;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <h3>Müşteri Bilgileri</h3>
+                        <div class="col-md-4">
+                            <img src="~/Images/@Model.Photo" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <p class="card-text">Ad: @Model.Name</p>
+                        <p class="card-text">Soyad: @Model.Surname</p>
+                        <p class="card-text">E-Posta: @Model.Email</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@model List<MenuItemViewModel>
+@{
+    var extras = ViewBag.Extras as List<ExtraIngredientViewModel>;
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card p-4 mb-4" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+            <h1>
+                MENÜLER
+            </h1>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="card p-4 mb-4" style="background-color:ivory; border-block-color:black; border-radius:24px; text-align:center;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="~/Images/@item.Photo" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Content</p>
+                            <p class="card-text">@item.Price</p>
+
+                            <form asp-action="MenuDelete" method="post" style="display:inline">
+                                <input type="hidden" name="menuItemId" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button> @*bi bi-trash: çöp kutusu resmi koyar ama öncelikle _layout.cshtml'de <head> etiketinin içine <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> eklenmelidir. *@
+                            </form>
+                            <form asp-action="MenuUpdate" method="get" style="display:inline">
+                                <input type="hidden" name="menuItemId" value="@item.Id" />
+                                <button type="submit" class="btn btn-success"><i class="bi bi-recycle"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        <div class="card p-4 mb-4" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+            <h1>
+                EKSTRA MALZEMELER
+            </h1>
+        </div>
+        @foreach (var item in extras)
+        {
+            <div class="card p-4 mb-4" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="~/Images/@item.Photo" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Price</p>
+
+                            <form asp-action="ExtraDelete" method="post" style="display:inline">
+                                <input type="hidden" name="extraId" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button> @*bi bi-trash: çöp kutusu resmi koyar ama öncelikle _layout.cshtml'de <head> etiketinin içine <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> eklenmelidir. *@
+                            </form>
+                            <form asp-action="ExtraUpdate" method="get" style="display:inline">
+                                <input type="hidden" name="extraId" value="@item.Id" />
+                                <button type="submit" class="btn btn-success"><i class="bi bi-recycle"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

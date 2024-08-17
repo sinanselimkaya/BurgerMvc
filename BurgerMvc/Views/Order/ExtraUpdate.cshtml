@@ -1,0 +1,25 @@
+﻿@model ExtraIngredientViewModel;
+
+<h2>Ekstra Güncelleme</h2>
+
+<form asp-controller="Order" asp-action="ExtraUpdate" method="post" enctype="multipart/form-data" class="form-control">
+    <div class="form-group">       
+        <input type="text" class="form-control" id="extraId" name="extraId" required value="@Model.Id" hidden />
+    </div>
+    <div class="form-group">
+        <label for="Name">Ekstra Malzeme Adı</label>
+        <input type="text" class="form-control" id="Name" name="Name" required value="@Model.Name" />
+    </div>
+  
+    <div class="form-group">
+        <label for="Price">Price</label>
+        <input type="text" class="form-control" id="Price" name="Price" required value="@Model.Price"></input>
+    </div>
+    <div class="form-group">
+        <label for="Photo">Photo:</label>
+        <input asp-for="Photo" type="file" class="form-control" id="Photo" value="@Model.Photo"/>
+    </div>
+    <div class="form-group m-2">
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+    </div>
+</form>

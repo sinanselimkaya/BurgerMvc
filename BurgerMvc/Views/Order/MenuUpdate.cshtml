@@ -1,0 +1,29 @@
+﻿@model MenuItemViewModel
+
+<h2>Menü Güncelleme</h2>
+
+<form asp-controller="Order" asp-action="MenuUpdate" method="post" enctype="multipart/form-data" class="form-control">
+    <div class="form-group">
+       
+        <input type="text" class="form-control" id="menuItemId" name="menuItemId" required value="@Model.Id" hidden />
+    </div>
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" class="form-control" id="Title" name="Title" required value="@Model.Title" />
+    </div>
+    <div class="form-group">
+        <label for="Content">Content</label>
+        <textarea class="form-control" id="Content" name="Content" rows="5" required >@Model.Content</textarea>
+    </div>
+    <div class="form-group">
+        <label for="Price">Price</label>
+        <input type="text" class="form-control" id="Price" name="Price" required value="@Model.Price"></input>
+    </div>
+    <div class="form-group">
+        <label for="Photo">Photo:</label>
+        <input asp-for="Photo" type="file" class="form-control" id="Photo" value="@Model.Photo" />
+    </div>
+    <div class="form-group m-2">
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+﻿@model OrderViewModel
+
+@{
+    var Total = ViewBag.Total;
+}
+<script>
+    window.onload = function () {
+        // Formu otomatik olarak gönder
+        document.getElementById('orderForm').submit();
+    };
+</script>
+
+<form id="orderForm" asp-controller="OrderCustomer" asp-action="OrderUpdate" method="post" enctype="multipart/form-data" class="form-control">
+    <div class="form-group">
+
+        <input type="text" class="form-control" id="orderId" name="orderId" required value="@Model.Id" hidden />
+    </div>
+    <div class="form-group">
+
+        <input type="text" class="form-control" id="TotalPrice" name="TotalPrice" required value="@Total" hidden />
+    </div>
+    <div class="form-group">
+
+        <input type="text" class="form-control" id="IsOrderConfirmed" name="IsOrderConfirmed" required value="True" hidden />
+    </div>  
+    <div class="form-group m-2">
+        <!-- Butonu gizlemek için inline CSS kullanıyoruz -->
+        <button type="submit" class="btn btn-primary" style="display: none;">Onay</button>
+    </div>
+</form>

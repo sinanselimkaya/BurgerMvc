@@ -1,0 +1,122 @@
+﻿@{
+    var allmenus = ViewBag.Menus as List<MenuItemViewModel>;
+    var allOrderMenus = ViewBag.OrdersMenus as List<OrdersMenuViewModel>;
+    var allextras = ViewBag.Extras as List<ExtraIngredientViewModel>;
+    var allOrderExtras = ViewBag.OrdersExtras as List<OrdersExtraViewModel>;
+    decimal total = 0m;
+    decimal big = 50m;
+    decimal middle = 20m;
+    var orderactive = Context.Session.GetInt32("OrderId");
+}
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="card p-2 mb-2" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+            <h2>
+                MENÜLER
+            </h2>
+        </div>
+        @foreach (var item in allmenus)
+        {
+            foreach (var item2 in allOrderMenus)
+            {
+                if (item2.MenuItemId == item.Id)
+                {
+                    <div class="col-12">
+                        <div class="card p-2 mb-2" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="~/Images/@item.Photo" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@item.Title</h5>
+                                        <p class="card-text">@item.Content</p>
+                                        <p class="card-text">Fiyat: @item.Price</p>
+                                        <p class="card-text">Miktar: @item2.Quantity</p>
+                                        <p class="card-text">Boyut: @item2.Size</p>
+
+                                        <form asp-action="OrdersMenuDelete" method="post" style="display:inline">
+                                            <input type="hidden" name="ordersMenuId" value="@item2.Id" />
+                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                        </form>
+                                        @{
+                                            if (item2.Size == BurgerMvc.BLL.Dtos.Size.Küçük)
+                                            { total += item.Price * item2.Quantity; }
+                                            if (item2.Size == BurgerMvc.BLL.Dtos.Size.Orta)
+                                            { total += (item.Price * item2.Quantity) + (middle * item2.Quantity); }
+                                            if (item2.Size == BurgerMvc.BLL.Dtos.Size.Büyük)
+                                            { total += (item.Price * item2.Quantity) + (big * item2.Quantity); }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+    <div class="col-md-5">
+        <div class="card p-2 mb-2" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+            <h2>
+                EKSTRA MALZEMELER
+            </h2>
+        </div>
+        @foreach (var item in allextras)
+        {
+            foreach (var item2 in allOrderExtras)
+            {
+                if (item2.ExtraIngredientId == item.Id)
+                {
+                    <div class="col-12">
+                        <div class="card p-2 mb-2" style="background-color:ivory ;border-block-color:black; border-radius:24px;text-align:center;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="~/Images/@item.Photo" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@item.Name</h5>
+                                        <p class="card-text">Fiyat: @item.Price</p>
+                                        <p class="card-text">Miktar: @item2.Quantity</p>
+
+                                        <form asp-action="OrdersExtraDelete" method="post" style="display:inline">
+                                            <input type="hidden" name="ordersExtraId" value="@item2.Id" />
+                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                        </form>
+                                        @{
+                                            total += item.Price * item2.Quantity;
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+    <div class="col-md-2">
+        <div class="col-12">
+            <div class="card p-2 mb-2" style="background-color:yellowgreen ;border-block-color:black; border-radius:24px;text-align:center;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <h3>Toplam Fiyat @total</h3>
+                        <form asp-action="OrderUpdate" method="get" style="display:inline">
+                            <input type="hidden" name="orderId" value="@orderactive" />
+                            <input type="hidden" name="total" value="@total.ToString(System.Globalization.CultureInfo.InvariantCulture)" />
+                            @if (total == 0)
+                            {
+                                <div class="alert alert-danger">Henüz sipariş vermediniz.</div>
+                            }
+                            else{
+                            <button type="submit" class="btn btn-success"><i class="btn btn-primary">Onayla</i></button>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
